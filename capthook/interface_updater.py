@@ -10,6 +10,13 @@ DC_DEVICE_PLATFORM_MAP = {
     "spine1": "arista_eos",
 }
 
+HOST_NAT_MAP = {
+    "leaf1": 2221,
+    "leaf2": 2222,
+    "leaf3": 2223,
+    "spine1": 2211,
+}
+
 def main():
     netbox_payload = json.loads(os.environ["PAYLOAD"])
 
@@ -24,7 +31,9 @@ def main():
         auth_username="admin",
         auth_password="admin",
         auth_strict_key=False,
-        platform=DC_DEVICE_PLATFORM_MAP[device_changed
+        platform=DC_DEVICE_PLATFORM_MAP[device_changed],
+        transport="paramiko",
+        port=HOST_NAT_MAP[device_changed]
         ) as conn:
         
         current_intf_descr_result = conn.send_command(command=f"show run interface {intf_changed} | inc description")
