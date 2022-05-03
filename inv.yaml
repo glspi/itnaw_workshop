@@ -1,0 +1,32 @@
+credentials:
+  default:
+    username: admin
+    password: admin
+
+devices:
+  spine1:
+    platform: arista_eos
+    address: spine1
+    send-commands:
+      - show version
+  leaf1:
+    platform: arista_eos
+    address: leaf1
+    send-commands:
+      - show version
+  leaf2:
+    platform: arista_eos
+    address: leaf2
+    send-commands:
+      - show version
+  leaf3:
+    platform: cisco_nxos
+    address: leaf3
+    send-commands:
+      - show version
+  rtr1:
+    platform: cisco_iosxe
+    address: rtr1
+    send-commands:
+      - show version
+
