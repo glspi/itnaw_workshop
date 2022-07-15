@@ -27,7 +27,7 @@ def main():
     print(f"Device {device_changed} interface {intf_changed} description updated to '{new_descr}'")
 
     with Scrapli(
-        host="student-ryan.us-west1-a",
+        host="student-cryan.us-west2-a",
         auth_username="admin",
         auth_password="admin",
         auth_strict_key=False,
