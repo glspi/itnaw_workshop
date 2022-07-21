@@ -1,8 +1,7 @@
 import os, sys
 import json
 
-from scrapli import Scrapli, settings
-settings.Settings.SUPPRESS_USER_WARNINGS = True
+from scrapli import Scrapli
 
 
 DC_DEVICE_PLATFORM_MAP = {
