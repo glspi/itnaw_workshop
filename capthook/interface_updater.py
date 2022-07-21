@@ -44,6 +44,9 @@ def main():
                 "Current running config interface description matches intended description, nothing to do!"
             )
             sys.exit(0)
+        else:
+            print(current_intf_descr_result.result)
+            print(new_descr)
             
         conn.send_configs(
             configs=[f"interface {intf_changed}", f"description {new_descr}"]
