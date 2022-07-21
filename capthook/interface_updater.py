@@ -39,7 +39,7 @@ def main():
             command=f"show run interface {intf_changed} | inc description"
         )
         
-        if current_intf_descr_result.result.strip() == new_descr:
+        if current_intf_descr_result.result.strip() == "description " + new_descr:
             print(
                 "Current running config interface description matches intended description, nothing to do!"
             )
