@@ -1,7 +1,8 @@
 import os, sys
 import json
 
-from scrapli import Scrapli
+from scrapli import Scrapli, Settings
+Settings.SUPPRESS_USER_WARNINGS = True
 
 DC_DEVICE_PLATFORM_MAP = {
     "leaf1": "arista_eos",
@@ -44,9 +45,6 @@ def main():
                 "Current running config interface description matches intended description, nothing to do!"
             )
             sys.exit(0)
-        else:
-            print(current_intf_descr_result.result)
-            print(new_descr)
             
         conn.send_configs(
             configs=[f"interface {intf_changed}", f"description {new_descr}"]
