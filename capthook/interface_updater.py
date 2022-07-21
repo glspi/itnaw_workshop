@@ -1,8 +1,9 @@
 import os, sys
 import json
 
-from scrapli import Scrapli, Settings
-Settings.SUPPRESS_USER_WARNINGS = True
+from scrapli import Scrapli, settings
+settings.Settings.SUPPRESS_USER_WARNINGS = True
+
 
 DC_DEVICE_PLATFORM_MAP = {
     "leaf1": "arista_eos",
