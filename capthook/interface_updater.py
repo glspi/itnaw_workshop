@@ -1,4 +1,4 @@
-import os
+import os, sys
 import json
 
 from scrapli import Scrapli
@@ -25,10 +25,6 @@ def main():
     intf_changed = netbox_payload["data"]["name"]
     new_descr = netbox_payload["data"]["description"]
 
-    print(
-        f"Device {device_changed} interface {intf_changed} description updated to '{new_descr}'"
-    )
-
     with Scrapli(
         host="student-cryan.us-west2-a",
         auth_username="admin",
@@ -42,15 +38,20 @@ def main():
         current_intf_descr_result = conn.send_command(
             command=f"show run interface {intf_changed} | inc description"
         )
+        
         if current_intf_descr_result.result.strip() == new_descr:
             print(
                 "Current running config interface description matches intended description, nothing to do!"
             )
-            return
+            sys.exit(0)
+            
         conn.send_configs(
             configs=[f"interface {intf_changed}", f"description {new_descr}"]
         )
-        print("interface description updated!")
+        
+        print(
+            f"Device {device_changed} interface {intf_changed} description updated to '{new_descr}'"
+        )
 
 
 if __name__ == "__main__":
